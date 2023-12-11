@@ -73,8 +73,10 @@ export class Gameboard {
   receiveAttack(x, y) {
     if (this.spaces[y][x] !== null) {
       this.spaces[y][x].hit();
+      return true;
     } else {
       this.missedHits.push({ x: x, y: y });
+      return false;
     }
   }
 

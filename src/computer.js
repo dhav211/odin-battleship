@@ -1,14 +1,13 @@
-import { Gameboard, ShipDirection } from './gameboard';
-import { Ship } from './ship';
+import { Gameboard, ShipDirection } from './gameboard.js';
+import { Ship } from './ship.js';
 
 export class Computer {
   constructor() {
-    this.gameboard = new Gameboard();
     this.positionsAttacked = [];
     this.wasLastAttackSuccess = false;
   }
 
-  setShips() {
+  setShips(gameboard) {
     const ships = [new Ship(5), new Ship(4), new Ship(3), new Ship(3), new Ship(2)];
 
     for (let ship of ships) {
@@ -18,9 +17,9 @@ export class Computer {
         const y = Math.floor(Math.random() * 9);
         const direction =
           Math.floor(Math.random() * 2) == 0 ? ShipDirection.Horizontal : ShipDirection.Vertical;
-        if (this.gameboard.isValidShipPlacement(x, y, direction, ship)) {
+        if (gameboard.isValidShipPlacement(x, y, direction, ship)) {
           hasFoundPosition = true;
-          this.gameboard.setShip(x, y, direction, ship);
+          gameboard.setShip(x, y, direction, ship);
         }
       }
     }

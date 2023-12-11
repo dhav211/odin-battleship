@@ -1,11 +1,13 @@
 import { Computer } from '../src/computer';
+import { Gameboard } from '../src/gameboard';
 
 test('set ships', () => {
   const computer = new Computer();
+  const gameboard = new Gameboard();
 
-  computer.setShips();
+  computer.setShips(gameboard);
 
-  expect(computer.gameboard.ships.length).toBe(5);
+  expect(gameboard.ships.length).toBe(5);
 });
 
 test('choose attack position', () => {
