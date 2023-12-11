@@ -1,11 +1,11 @@
-const Ship = require('./ship');
+import { Ship } from '../src/ship';
 
-const ShipDirection = {
+export const ShipDirection = {
   Horizontal: 0,
   Vertical: 1,
 };
 
-class Gameboard {
+export class Gameboard {
   constructor() {
     this.spaces = [];
     this.ships = [];
@@ -82,6 +82,3 @@ class Gameboard {
     return this.ships.every((ship) => ship.isSunk());
   }
 }
-
-module.exports.gameboard = Gameboard;
-module.exports.shipDirection = ShipDirection;

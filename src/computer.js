@@ -1,9 +1,9 @@
-const Gameboard = require('./gameboard');
-const Ship = require('./ship');
+import { Gameboard, ShipDirection } from './gameboard';
+import { Ship } from './ship';
 
-class Computer {
+export class Computer {
   constructor() {
-    this.gameboard = new Gameboard.gameboard();
+    this.gameboard = new Gameboard();
     this.positionsAttacked = [];
     this.wasLastAttackSuccess = false;
   }
@@ -17,9 +17,7 @@ class Computer {
         const x = Math.floor(Math.random() * 9);
         const y = Math.floor(Math.random() * 9);
         const direction =
-          Math.floor(Math.random() * 2) == 0
-            ? Gameboard.shipDirection.Horizontal
-            : Gameboard.shipDirection.Vertical;
+          Math.floor(Math.random() * 2) == 0 ? ShipDirection.Horizontal : ShipDirection.Vertical;
         if (this.gameboard.isValidShipPlacement(x, y, direction, ship)) {
           hasFoundPosition = true;
           this.gameboard.setShip(x, y, direction, ship);
@@ -68,5 +66,3 @@ class Computer {
     return attackPosition;
   }
 }
-
-module.exports = Computer;

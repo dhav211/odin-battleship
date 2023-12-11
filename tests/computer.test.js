@@ -1,4 +1,4 @@
-const Computer = require('../src/computer');
+import { Computer } from '../src/computer';
 
 test('set ships', () => {
   const computer = new Computer();
