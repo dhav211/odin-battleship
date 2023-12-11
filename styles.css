@@ -1,0 +1,22 @@
+body, html {
+    margin: 0;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gameboard {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+    gap: 2px;
+    width: 400px;
+    height: 400px;
+}
+
+.gameboard-cell {
+    background-color: gainsboro;
+}

@@ -1,4 +1,4 @@
-import { Ship } from '../src/ship';
+import { Ship } from '../src/ship.js';
 
 export const ShipDirection = {
   Horizontal: 0,
@@ -48,9 +48,9 @@ export class Gameboard {
     if (!isShip) return false;
 
     // check to see if the placement is within gameboard bounds
-    if (direction === ShipDirection.Horizontal && x + ship.length > 8) {
+    if (direction === ShipDirection.Horizontal && x + ship.length > 9) {
       return false;
-    } else if (direction === ShipDirection.Vertical && y + ship.length > 8) {
+    } else if (direction === ShipDirection.Vertical && y + ship.length > 9) {
       return false;
     }
 
@@ -80,5 +80,15 @@ export class Gameboard {
 
   areAllShipsSunk() {
     return this.ships.every((ship) => ship.isSunk());
+  }
+
+  clearBoard() {
+    this.spaces = [];
+    this.ships = [];
+    this.missedHits = [];
+
+    for (let i = 0; i <= 9; i++) {
+      this.spaces.push([null, null, null, null, null, null, null, null, null]);
+    }
   }
 }
