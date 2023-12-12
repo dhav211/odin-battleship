@@ -1,7 +1,7 @@
 import { Computer } from './computer.js';
 import { Gameboard } from './gameboard.js';
 
-export class ComputerBoard {
+export class AttackComputerBoard {
   constructor() {
     this.gameboard = new Gameboard();
     this.spaces = this.createEmptySpaces();
@@ -13,6 +13,14 @@ export class ComputerBoard {
 
   setEnemyAttackMethod(func) {
     this.enemyChooseAttack = func;
+  }
+
+  setIncreasePlayerScore(func) {
+    this.increasePlayerScore = func;
+  }
+
+  setVictoryMessage(func) {
+    this.victoryMessage = func;
   }
 
   createElement() {
@@ -59,6 +67,16 @@ export class ComputerBoard {
       } else {
         this.spaces[y][x].element.style.backgroundColor = 'black';
       }
+
+      if (this.gameboard.spaces[y][x] !== null && this.gameboard.spaces[y][x].isSunk()) {
+        this.increasePlayerScore();
+
+        if (this.gameboard.areAllShipsSunk()) {
+          this.victoryMessage('You won!!');
+        }
+      }
+
+      this.spaces[y][x].isAttacked = true;
       this.enemyChooseAttack();
     }
   }

@@ -1,4 +1,4 @@
-import { Gameboard, ShipDirection } from './gameboard.js';
+import { ShipDirection } from './gameboard.js';
 import { Ship } from './ship.js';
 
 export class Computer {
@@ -34,7 +34,13 @@ export class Computer {
       while (!hasFoundPosition) {
         attackPosition = { x: Math.floor(Math.random() * 9), y: Math.floor(Math.random() * 9) };
 
-        if (!this.positionsAttacked.includes(attackPosition)) hasFoundPosition = true;
+        if (
+          !this.positionsAttacked.some(
+            (position) => position.x === attackPosition.x && position.y === attackPosition.y
+          )
+        ) {
+          hasFoundPosition = true;
+        }
       }
     } else {
       const lastAttackPostion = this.positionsAttacked[this.positionsAttacked.length - 1];
@@ -47,7 +53,9 @@ export class Computer {
 
       const possiblePositions = surroundingPositions.filter(
         (position) =>
-          !this.positionsAttacked.includes(attackPosition) &&
+          !this.positionsAttacked.some(
+            (allPosition) => allPosition.x === position.x && allPosition.y === position.y
+          ) &&
           position.x >= 0 &&
           position.x <= 8 &&
           position.y >= 0 &&

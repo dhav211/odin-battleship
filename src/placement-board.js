@@ -17,15 +17,19 @@ export class PlacementBoard {
   constructor() {
     this.gameboard = new Gameboard();
     this.startButton = document.createElement('button');
+    this.startButton.classList.add('big-button');
     this.spaces = this.createEmptySpaces();
     this.element = this.createElement();
   }
 
   createElement() {
     const element = document.createElement('div');
+    element.classList.add('centered');
 
     const buttonContainer = document.createElement('div');
+    buttonContainer.id = 'small-button-container';
     const rotateButton = document.createElement('button');
+    rotateButton.classList.add('small-button');
     rotateButton.textContent = 'Rotate';
     rotateButton.addEventListener(
       'click',
@@ -36,6 +40,7 @@ export class PlacementBoard {
             : ShipDirection.Horizontal)
     );
     const clearButton = document.createElement('button');
+    clearButton.classList.add('small-button');
     clearButton.textContent = 'Clear';
     clearButton.addEventListener('click', () => this.clearBoard());
     buttonContainer.appendChild(rotateButton);
